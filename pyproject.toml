@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "llm-platform"
+version = "0.1.0"
+description = ""
+authors = ["Guangyu Zhao <guangyuzhao@hillstonenet.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+classifiers = ["Private :: Not a Public Package"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.dev-dependencies]
+# formatting
+black = "^24.3"
+# linting
+flake8 = "^7.0"
+# testing
+pytest = "^6.2"
+# precommit hooks
+pre-commit = "^3.7"
+
+
+[tool.black]
+line-length = 78
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
