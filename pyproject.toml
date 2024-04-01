@@ -9,38 +9,27 @@ classifiers = ["Private :: Not a Public Package"]
 
 [tool.poetry.dependencies]
 # support >=3.9 for generics
-python = ">=3.9"
+python = "^3.11"
 
-[tool.poetry.dev-dependencies]
-# formatting
-black = "^24.3"
-# linting
-flake8 = "^7.0"
-# testing
-pytest = "^6.2"
-# precommit hooks
-pre-commit = "^3.7"
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.4"
+pytest = "^8.1.1"
+pre-commit = "^3.7.0"
 
-
-[tool.black]
-line-length = 78
-target-version = ['py39', 'py310', 'py311']
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
-
+[tool.ruff]
+target-version = "py311"
+exclude = [
+    "deployment",
+]
+lint.ignore = [
+    "COM812",  # Too aggressive
+    "D212",  # Using D213
+    "D417",  # Too aggressive
+    "F541",  # Messes with prompts.py
+    "TCH002",
+    "UP006",  # Messes with pydantic
+    "UP007",  # Wants | over Union, which breaks 3.8
+]
 
 [build-system]
 requires = ["poetry-core"]
